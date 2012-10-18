@@ -17,6 +17,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+include_recipe "apt"
+
 version = node['java']['jdk_version']
 java_home = node['java']['java_home']
 java_home_parent = ::File.dirname java_home
@@ -47,6 +49,7 @@ if platform?("ubuntu","debian","redhat","centos","fedora","scientific","amazon")
         r = Chef::Resource::Execute.new("update-java-alternatives", run_context)
         r.command "update-java-alternatives -s java-6-openjdk"
         r.returns [0,2]
+        r.run_action("apt-get update")
         r.run_action(:create)
       else
         # have to do this on ubuntu for version 7 because Ubuntu does
