@@ -19,24 +19,24 @@
 
 case node['platform_family']
 when "rhel", "fedora"
-  node['java']['java_home'] = "/usr/lib/jvm/java"
-  node['java']['openjdk_packages'] = ["java-1.#{node['java']['jdk_version']}.0-openjdk", "java-1.#{node['java']['jdk_version']}.0-openjdk-devel"]
+  node.default['java']['java_home'] = "/usr/lib/jvm/java"
+  node.default['java']['openjdk_packages'] = ["java-1.#{node['java']['jdk_version']}.0-openjdk", "java-1.#{node['java']['jdk_version']}.0-openjdk-devel"]
 when "freebsd"
-  node['java']['java_home'] = "/usr/local/openjdk#{node['java']['jdk_version']}"
-  node['java']['openjdk_packages'] = ["openjdk#{node['java']['jdk_version']}"]
+  node.default['java']['java_home'] = "/usr/local/openjdk#{node['java']['jdk_version']}"
+  node.default['java']['openjdk_packages'] = ["openjdk#{node['java']['jdk_version']}"]
 when "arch"
-  node['java']['java_home'] = "/usr/lib/jvm/java-#{node['java']['jdk_version']}-openjdk"
-  node['java']['openjdk_packages'] = ["openjdk#{jdk_version}"]
+  node.default['java']['java_home'] = "/usr/lib/jvm/java-#{node['java']['jdk_version']}-openjdk"
+  node.default['java']['openjdk_packages'] = ["openjdk#{jdk_version}"]
 when "windows"
-  node['java']['install_flavor'] = "windows"
-  node['java']['windows']['url'] = nil
-  node['java']['windows']['package_name'] = "Java(TM) SE Development Kit 7 (64-bit)"
+  node.default['java']['install_flavor'] = "windows"
+  node.default['java']['windows']['url'] = nil
+  node.default['java']['windows']['package_name'] = "Java(TM) SE Development Kit 7 (64-bit)"
 when "debian"
-  node['java']['java_home'] = "/usr/lib/jvm/default-java"
-  node['java']['openjdk_packages'] = ["openjdk-#{node['java']['jdk_version']}-jdk", "default-jre-headless"]
+  node.default['java']['java_home'] = "/usr/lib/jvm/default-java"
+  node.default['java']['openjdk_packages'] = ["openjdk-#{node['java']['jdk_version']}-jdk", "default-jre-headless"]
 else
-  node['java']['java_home'] = "/usr/lib/jvm/default-java"
-  node['java']['openjdk_packages'] = ["openjdk-#{node['java']['jdk_version']}-jdk"]
+  node.default['java']['java_home'] = "/usr/lib/jvm/default-java"
+  node.default['java']['openjdk_packages'] = ["openjdk-#{node['java']['jdk_version']}-jdk"]
 end
 
 
